@@ -15,7 +15,7 @@ public class JdbcConfig {
 	private @Autowired Environment environment;
 	private @Autowired DataSource dataSource;
 
-	@Bean(name = "dataSource")
+	@Bean
 	public DataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName(environment.getProperty("jdbc.driverClassName"));
@@ -25,7 +25,7 @@ public class JdbcConfig {
 		return dataSource;
 	}
 
-	@Bean(name = "jdbcTemplate")
+	@Bean
 	public JdbcTemplate jdbcTemplate() {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
 		jdbcTemplate.setDataSource(dataSource);
