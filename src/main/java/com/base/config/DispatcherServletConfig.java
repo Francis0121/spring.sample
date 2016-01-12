@@ -1,0 +1,25 @@
+package com.base.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+@Configuration
+@EnableWebMvc
+@ComponentScan(includeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, value = Controller.class)}, basePackages = {"com.base.mvc"})
+public class DispatcherServletConfig extends WebMvcConfigurerAdapter {
+
+	@Bean
+	public InternalResourceViewResolver getViewResolver() {
+		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+		viewResolver.setPrefix("/WEB-INF/pages/");
+		viewResolver.setSuffix(".jsp");
+		viewResolver.setOrder(0);
+		return viewResolver;
+	}
+}
